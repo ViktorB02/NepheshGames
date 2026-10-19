@@ -7,7 +7,7 @@ import MusicPlayer from './components/MusicPlayer'
 
 export default function App() {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename={import.meta.env.BASE_URL}>
             <MusicPlayer>
                 <Routes>
                     <Route path="/" element={<Home />} />
