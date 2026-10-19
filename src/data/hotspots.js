@@ -3,7 +3,7 @@ export const MAPS = [
     {
         id: 1,
         name: 'Capital City',
-        model: `${import.meta.env.BASE_URL}WebScene3_web.glb`,
+        model: `${import.meta.env.BASE_URL}${/iPhone|iPad|iPod/i.test(navigator.userAgent) ? 'WebScene3_mobile256.glb' : 'WebScene3_web.glb'}`,
         offset: [529.98, -2.128, 225.555], // model translation in hotspot/camera space (model center lands near [154.8, 0, 63.5])
         cam: { pos: [92, 96.5, 268.9], target: [84.4, -46, 13.1] },
         camMobile: { pos: [155, 179, 532.7], target: [155, 0, 63] }, // phone portrait framing (1.4x back from target); nudge as needed
