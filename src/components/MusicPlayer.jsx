@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { MusicContext } from './MusicContext'
 import MusicButton from './MusicButton'
 
-const SRC = '/ExplorationMusic.mp3'
+const SRC = `${import.meta.env.BASE_URL}ExplorationMusic.mp3`
 const VOLUME = 0.35                      // low ambient level
 const STORAGE_KEY = 'elzorn-music-muted' // '1' = the user muted it
 

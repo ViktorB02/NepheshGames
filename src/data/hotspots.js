@@ -3,7 +3,7 @@ export const MAPS = [
     {
         id: 1,
         name: 'Capital City',
-        model: '/WebScene3_web.glb',
+        model: `${import.meta.env.BASE_URL}WebScene3_web.glb`,
         offset: [529.98, -2.128, 225.555], // model translation in hotspot/camera space (model center lands near [154.8, 0, 63.5])
         cam: { pos: [92, 96.5, 268.9], target: [84.4, -46, 13.1] },
         camMobile: { pos: [155, 179, 532.7], target: [155, 0, 63] }, // phone portrait framing (1.4x back from target); nudge as needed
@@ -27,7 +27,7 @@ export const MAPS = [
     {
         id: 2,
         name: 'Sawmill',
-        model: '/WebScene10_web.glb',
+        model: `${import.meta.env.BASE_URL}WebScene10_web.glb`,
         offset: [532.465, -4.252, 234.86], // model translation in hotspot/camera space (same framing as map 1)
         cam: { pos: [183.1, 18.9, -43], target: [186.1, -4, 58.6] }, // previous: pos [179.3, 34.1, -32.1], target [183.2, -6.3, 58.2]. Older note: +43.6 X on pos and target slides the sawmill to screen-right; map 1 view rotated 180° about Y and pulled to 0.62x distance, aimed at the sawmill center
         camMobile: { pos: [156.3, 7.1, -122.6], target: [154.8, 0, 63.5] }, // phone portrait (viewed from -Z, same side as desktop)
@@ -41,7 +41,7 @@ export const MAPS = [
     {
         id: 3,
         name: 'The Temple of Elzorn',
-        model: '/Temple1_web.glb',
+        model: `${import.meta.env.BASE_URL}Temple1_web.glb`,
         offset: [159.9, 3.1, 63.2], // measured model translation in hotspot/camera space
         cam: { pos: [86.9, 4.9, 52.1], target: [177, -6.6, 35.5] },
         camMobile: { pos: [62.9, 10.3, 61], target: [154.8, 0, 63.5] }, // phone portrait
