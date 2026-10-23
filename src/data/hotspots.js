@@ -9,7 +9,7 @@ export const MAPS = [
         model: `${import.meta.env.BASE_URL}${isMobileDevice ? 'WebScene3_m128.glb' : 'WebScene3_512.glb'}`,
         offset: [529.98, -2.128, 225.555], // model translation in hotspot/camera space (model center lands near [154.8, 0, 63.5])
         cam: { pos: [92, 96.5, 268.9], target: [84.4, -46, 13.1] },
-        camMobile: { pos: [155, 179, 532.7], target: [155, 0, 63] }, // phone portrait framing (1.4x back from target); nudge as needed
+        camMobile: { pos: [155, 143.2, 438.76], target: [155, 0, 63] }, // phone portrait framing; pos pulled 20% closer to target (was [155, 179, 532.7])
         focusDist: 75, // camera distance when a hotspot is opened
         story: [
             { speaker: 'Eldric the Chronicler', text: 'Sit, traveller, and listen. Long ago, all of Elzorn was one realm of four kingdoms, bound beneath a single High Crown. The Humans of the west, the Orcs of the east, and two others now lost to memory. For a hundred years they knew peace.' },
@@ -33,7 +33,7 @@ export const MAPS = [
         model: `${import.meta.env.BASE_URL}${isMobileDevice ? 'WebScene10_m128.glb' : 'WebScene10_web.glb'}`,
         offset: [532.465, -4.252, 234.86], // model translation in hotspot/camera space (same framing as map 1)
         cam: { pos: [183.1, 18.9, -43], target: [186.1, -4, 58.6] }, // previous: pos [179.3, 34.1, -32.1], target [183.2, -6.3, 58.2]. Older note: +43.6 X on pos and target slides the sawmill to screen-right; map 1 view rotated 180° about Y and pulled to 0.62x distance, aimed at the sawmill center
-        camMobile: { pos: [156.3, 7.1, -122.6], target: [154.8, 0, 63.5] }, // phone portrait (viewed from -Z, same side as desktop)
+        camMobile: { pos: [156.225, 6.745, -113.295], target: [154.8, 0, 63.5] }, // phone portrait (viewed from -Z, same side as desktop); pos pulled 5% closer to target (was [156.3, 7.1, -122.6])
         focusDist: 54, // smaller map: closer than map 1 on hotspot focus (was 40, too tight)
         hotspots: [
             { id: 1, title: 'The Woodcutters', text: "The lifeblood of Aldenmoor's economy. Here lumberjacks fell timber to fuel the kingdom's forges, walls, and war machines.", pos: [159.3, -6.1, 62.6], lift: 19 },
@@ -47,7 +47,7 @@ export const MAPS = [
         model: `${import.meta.env.BASE_URL}${isMobileDevice ? 'Temple1_m128.glb' : 'Temple1_web.glb'}`,
         offset: [159.9, 3.1, 63.2], // measured model translation in hotspot/camera space
         cam: { pos: [86.9, 4.9, 52.1], target: [177, -6.6, 35.5] },
-        camMobile: { pos: [62.9, 10.3, 61], target: [154.8, 0, 63.5] }, // phone portrait
+        camMobile: { pos: [81.28, 8.24, 61.5], target: [154.8, 0, 63.5] }, // phone portrait; pos pulled 20% closer to target (was [62.9, 10.3, 61])
         focusDist: 54,
         hotspots: [
             { id: 1, title: 'The Eternal Temple', text: 'Older than any crown in Elzorn, the Eternal Temple stands beyond the quarrels of kings. Here Humans and Orcs alike lay down their arms — for on this sacred ground, no blade may be drawn. All who seek the favor of the old gods must come as pilgrims, not conquerors.', pos: [149.3, -4.9, 59.0], lift: 14 },
