@@ -8,11 +8,32 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Non-render-blocking fonts: loaded as print media, switched to all once fetched (display=swap is in the URL) -->
+    <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"></noscript>
 
+    <!-- Start the first map's GLB now, in parallel with the JS bundle. Same mobile/desktop rule as src/data/hotspots.js -->
+    <script>
+      (function () {
+        var mobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        var l = document.createElement('link');
+        l.rel = 'preload';
+        l.as = 'fetch';
+        l.crossOrigin = 'anonymous';
+        l.href = '%BASE_URL%' + (mobile ? 'WebScene3_m128.glb' : 'WebScene3_512.glb');
+        document.head.appendChild(l);
+      })();
+    </script>
+
+    <style>
+      /* Early loading indicator: lives inside #root and is wiped when React mounts */
+      #early-loader { position: fixed; inset: 0; background: #2a1818; display: flex; align-items: center; justify-content: center; }
+      #early-loader div { width: 56px; height: 56px; border-radius: 50%; border: 3px solid rgba(201,146,42,.25); border-top-color: #c9922a; animation: early-spin 1s linear infinite; }
+      @keyframes early-spin { to { transform: rotate(360deg); } }
+    </style>
   </head>
-  <body>
-    <div id="root"></div>
+  <body style="background:#2a1818">
+    <div id="root"><div id="early-loader"><div></div></div></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

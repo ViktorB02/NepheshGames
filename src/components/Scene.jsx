@@ -3,7 +3,7 @@ import { Canvas, useThree, useFrame } from '@react-three/fiber'
 import { OrbitControls, Environment, useGLTF, useAnimations } from '@react-three/drei'
 import * as THREE from 'three'
 import { clone as cloneSkinned } from 'three/examples/jsm/utils/SkeletonUtils.js'
-import { LIFT } from '../data/hotspots'
+import { LIFT, MAPS } from '../data/hotspots'
 import Hotspot from './Hotspot'
 import MapParticles from './Particles'
 import useIsMobile from '../hooks/useIsMobile'
@@ -27,6 +27,9 @@ function City({ model, offset = [0, 0, 0] }) {
         </group>
     )
 }
+
+// Fallback for the index.html preload: same URL, so the browser reuses the in-flight / cached download.
+useGLTF.preload(MAPS[0].model)
 
 const FOCUS_DIST = 75 // default focus distance; override per map with `focusDist` in hotspots.js
 

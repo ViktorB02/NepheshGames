@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import { useProgress } from '@react-three/drei'
 import { MusicContext } from './MusicContext'
 import MusicButton from './MusicButton'
 
@@ -29,7 +30,7 @@ export default function MusicProvider({ children }) {
         const audio = new Audio(SRC)
         audio.loop = true
         audio.volume = VOLUME
-        audio.preload = 'auto'
+        audio.preload = 'none'   // the ~7MB mp3 must not compete with the map GLB; it starts once loading is done (see below)
         audioRef.current = audio
 
         const events = ['pointerdown', 'keydown', 'touchend']
@@ -42,20 +43,31 @@ export default function MusicProvider({ children }) {
         }
         events.forEach((e) => window.addEventListener(e, onGesture))
 
-        if (!mutedRef.current) {
-            audio.play().catch(() => {
-                // unmuted autoplay blocked -> muted autoplay is usually allowed; the gesture handler unmutes it
-                audio.muted = true
-                audio.play().catch(() => { /* wait for the first interaction */ })
-            })
-        }
-
         return () => {
             removeGesture()
             audio.pause()
             audioRef.current = null
         }
     }, [])
+
+    // Autoplay attempt, deferred until the 3D loading screen has cleared (progress 100 and nothing loading), on any
+    // non-map page right away, or after a 20s fallback. A click / tap / key press before that still starts it.
+    const { active: loadingActive, progress } = useProgress()
+    const [fallback, setFallback] = useState(false)
+    useEffect(() => {
+        const t = setTimeout(() => setFallback(true), 20000)
+        return () => clearTimeout(t)
+    }, [])
+    const ready = pathname !== '/' || fallback || (progress >= 100 && !loadingActive)
+    useEffect(() => {
+        const audio = audioRef.current
+        if (!ready || !audio || mutedRef.current || !audio.paused) return
+        audio.play().catch(() => {
+            // unmuted autoplay blocked -> muted autoplay is usually allowed; the gesture handler unmutes it
+            audio.muted = true
+            audio.play().catch(() => { /* wait for the first interaction */ })
+        })
+    }, [ready])
 
     const value = useMemo(() => ({
         muted,
