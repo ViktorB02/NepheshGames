@@ -8,6 +8,8 @@ import Sidebar from '../components/Sidebar'
 import TopBar from '../components/TopBar'
 import BottomBar from '../components/BottomBar'
 import RegionNav from '../components/RegionNav'
+import MobileNavBar from '../components/MobileNavBar'
+import MobileStatus from '../components/MobileStatus'
 import StoryPanel from '../components/StoryPanel'
 import HistoryPanel from '../components/HistoryPanel'
 import GameLoopPanel from '../components/GameLoopPanel'
@@ -45,7 +47,7 @@ export default function Home() {
         setStoryStep(0)
         setHistoryOpen(false)
         setGameLoopOpen(false)
-        setWelcomeOpen(false)
+        setWelcomeOpen(true)  // every map switch re-opens that map's Welcome (it appears once the map has loaded)
     }
 
     const handleOpenStory = () => {
@@ -97,17 +99,23 @@ export default function Home() {
 
             <Sidebar onOpenHistory={handleOpenHistory} onOpenGameLoop={handleOpenGameLoop} onOpenWelcome={handleOpenWelcome} />
             <TopBar />
-            <BottomBar
-                onOpenStory={region.story?.length ? handleOpenStory : undefined}
-                hidden={!!activeData || historyOpen || gameLoopOpen || storyOpen || (welcomeOpen && !loading)}
-            />
-            <RegionNav activeRegion={regionId} onSelect={handleRegionSelect} />
+            {/* phones get time + temperature from MobileStatus instead, so the bottom strip is desktop-only */}
+            {!isMobile && (
+                <BottomBar
+                    onOpenStory={region.story?.length ? handleOpenStory : undefined}
+                    hidden={!!activeData || historyOpen || gameLoopOpen || storyOpen || (welcomeOpen && !loading)}
+                />
+            )}
+            {isMobile
+                ? <MobileNavBar activeRegion={regionId} onSelect={handleRegionSelect} />
+                : <RegionNav activeRegion={regionId} onSelect={handleRegionSelect} />}
 
+            {isMobile && <MobileStatus regionId={regionId} />}
             <Counter discovered={discovered.length} total={region.hotspots.length} />
             <InfoPanel data={activeData} onClose={() => setActive(null)} />
             {historyOpen && <HistoryPanel onClose={() => setHistoryOpen(false)} />}
             {gameLoopOpen && <GameLoopPanel onClose={() => setGameLoopOpen(false)} />}
-            {welcomeOpen && !loading && <WelcomePanel onClose={() => setWelcomeOpen(false)} />}
+            {welcomeOpen && !loading && <WelcomePanel welcome={region.welcome} onClose={() => setWelcomeOpen(false)} />}
             {storyOpen && region.story?.length > 0 && (
                 <StoryPanel
                     story={region.story}

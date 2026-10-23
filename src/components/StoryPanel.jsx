@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import useIsMobile from '../hooks/useIsMobile'
 import { sheetPaddedStyle, SheetHandle, PanelClose } from './MobileSheet'
+import { MOBILE_ABOVE_NAVBAR } from '../layout'
 import { usePanelTop } from '../layout'
 
 const avatarUrl = (name) =>
@@ -45,15 +46,21 @@ export default function StoryPanel({ story, step, onStep, onClose }) {
             background: 'rgba(26,14,14,0.95)', border: '1px solid rgba(201,146,42,0.2)',
             color: '#e2ddd0', fontFamily: "'Inter', sans-serif",
             boxShadow: '0 4px 24px rgba(0,0,0,0.5)',
-            ...(isMobile && sheetPaddedStyle),
+            ...(!isMobile && { display: 'flex', flexDirection: 'column', boxSizing: 'border-box', maxHeight: panel.maxHeight }), // bounded: the text scrolls inside, the Prev/Next row stays visible
+            ...(isMobile && { ...sheetPaddedStyle, bottom: MOBILE_ABOVE_NAVBAR, borderRadius: 14, paddingBottom: 18, maxHeight: '50dvh' }), // lifted so the bottom nav bar stays visible
         }}>
             {isMobile && <SheetHandle onClose={onClose} />}
-            <style>{`@keyframes story-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }`}</style>
+            <style>{`
+                @keyframes story-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+                .story-scroll { scrollbar-width: thin; scrollbar-color: rgba(201,146,42,0.5) transparent; }
+                .story-scroll::-webkit-scrollbar { width: 6px; }
+                .story-scroll::-webkit-scrollbar-thumb { background: rgba(201,146,42,0.45); border-radius: 3px; }
+            `}</style>
 
             <PanelClose onClose={onClose} />
 
             {/* key={step} replays the fade-in on every step */}
-            <div key={step} style={{ animation: 'story-in 0.3s ease' }}>
+            <div key={step} className="story-scroll" style={{ animation: 'story-in 0.3s ease', ...(!isMobile && { flex: '1 1 auto', minHeight: 0, overflowY: 'auto' }) }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14, paddingRight: 16 }}>
                     <Avatar name={current.speaker} />
                     <div style={{
@@ -69,7 +76,7 @@ export default function StoryPanel({ story, step, onStep, onClose }) {
                 </div>
             </div>
 
-            <div style={{ marginTop: 20, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+            <div style={{ marginTop: 20, flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                     {!isFirst && <button style={btn} onClick={() => onStep(step - 1)}>← Prev</button>}
                     <span style={{ fontSize: 12, color: '#8a8478', letterSpacing: '0.1em' }}>

@@ -19,6 +19,14 @@ export const MAPS = [
             { speaker: 'Old Tomas', text: "I've seen three sieges from these ramparts, boy. The Orcs are not the only danger. The lost kingdoms stir again, and whispers speak of the High Crown returning. Dark days are coming for Elzorn." },
             { speaker: 'Warden Aldric', text: 'Aldenmoor still stands. Proud, defiant, unbroken. But the war for Elzorn is far from won. Every hand matters now. Will you stand with us, traveller?' },
         ],
+        welcome: { // shown by WelcomePanel on every visit to this map: title, body paragraphs, italic closing line
+            title: 'Welcome, Traveller',
+            body: [
+                'Explore the capital of the Human Kingdom. Discover its landmarks, uncover hidden stories, and experience the world of Elzorn.',
+                'Use the side icons to read the history, learn how the game plays, or join our Discord.',
+            ],
+            closing: 'Your journey begins here.',
+        },
         hotspots: [
             { id: 1, title: 'The Great Walls', text: 'These towering ramparts have protected Elzorn for generations, their stone towers standing watch over every approach to the city.', pos: [180.5, 10.1, 93.7] },
             { id: 2, title: 'The Realm of Elzorn', text: 'Welcome, traveller. Elzorn is a living medieval world where players build, trade, and battle for dominion over the land.', pos: [149.2, -1.5, 47.9], lift: 44 }, // lift = marker height above pos (default LIFT = 32); the leader line grows with it
@@ -35,6 +43,19 @@ export const MAPS = [
         cam: { pos: [183.1, 18.9, -43], target: [186.1, -4, 58.6] }, // previous: pos [179.3, 34.1, -32.1], target [183.2, -6.3, 58.2]. Older note: +43.6 X on pos and target slides the sawmill to screen-right; map 1 view rotated 180° about Y and pulled to 0.62x distance, aimed at the sawmill center
         camMobile: { pos: [156.225, 6.745, -113.295], target: [154.8, 0, 63.5] }, // phone portrait (viewed from -Z, same side as desktop); pos pulled 5% closer to target (was [156.3, 7.1, -122.6])
         focusDist: 54, // smaller map: closer than map 1 on hotspot focus (was 40, too tight)
+        story: [
+            { speaker: 'Eldric the Chronicler', text: "The Sawmill feeds Elzorn's war effort. Day and night the blades turn, cutting timber for palisades, siege engines, and the great halls of the capital." },
+            { speaker: 'Eldric the Chronicler', text: "The horses haul fresh cut logs down from the highlands, and the white steeds you see are bred here for the King's riders." },
+            { speaker: 'Eldric the Chronicler', text: 'Where there is wood, there is war, and the Orcs know it. Raids on the mill have grown bolder with each passing moon.' },
+        ],
+        welcome: {
+            title: 'The Highland Sawmill',
+            body: [
+                "Here Elzorn's war machine is fed. Walk among the woodcutters, the warhorses, and the white steeds bred for the King's riders.",
+                'Use the side icons to read the history, learn how the game plays, or join our Discord.',
+            ],
+            closing: 'Beware, the Orcs grow bolder with every felled tree.',
+        },
         hotspots: [
             { id: 1, title: 'The Woodcutters', text: "The lifeblood of Aldenmoor's economy. Here lumberjacks fell timber to fuel the kingdom's forges, walls, and war machines.", pos: [159.3, -6.1, 62.6], lift: 19 },
             { id: 2, title: 'The Timber Yard', text: 'Felled logs are gathered, stripped, and stacked — raw wood ready to be hauled to the Capital for building and crafting.', pos: [153.9, -6.5, 50.7], lift: 26 },
@@ -49,6 +70,19 @@ export const MAPS = [
         cam: { pos: [86.9, 4.9, 52.1], target: [177, -6.6, 35.5] },
         camMobile: { pos: [81.28, 8.24, 61.5], target: [154.8, 0, 63.5] }, // phone portrait; pos pulled 20% closer to target (was [62.9, 10.3, 61])
         focusDist: 54,
+        story: [
+            { speaker: 'Eldric the Chronicler', text: 'The Temple stands at the edge of the burning sands, older than the kingdom itself. Pilgrims cross the desert to seek the blessing of the old light, and golden spirits are said to drift between its pillars at dusk.' },
+            { speaker: 'Eldric the Chronicler', text: 'The heat here is unforgiving, yet the faithful endure.' },
+            { speaker: 'Eldric the Chronicler', text: 'Some say the Temple guards a relic that could turn the tide against the Orc hordes, if the right hand should claim it.' },
+        ],
+        welcome: {
+            title: 'The Desert Temple',
+            body: [
+                'Older than the kingdom itself, it stands at the edge of the burning sands. Feel the desert heat, watch the golden spirits drift, and seek the blessing of the old light.',
+                'Use the side icons to read the history, learn how the game plays, or join our Discord.',
+            ],
+            closing: 'Some say a relic sleeps here, one that could turn the tide of war.',
+        },
         hotspots: [
             { id: 1, title: 'The Eternal Temple', text: 'Older than any crown in Elzorn, the Eternal Temple stands beyond the quarrels of kings. Here Humans and Orcs alike lay down their arms — for on this sacred ground, no blade may be drawn. All who seek the favor of the old gods must come as pilgrims, not conquerors.', pos: [149.3, -4.9, 59.0], lift: 14 },
             { id: 2, title: "The Oracle's Altar", text: "At the heart of the temple burns the Oracle's flame, said to have never died since the First Age. Rulers from every kingdom send envoys to hear its prophecies — for whoever heeds the Oracle's word is said to shape the fate of all Elzorn.", pos: [161.1, -5.5, 71.3], lift: 20 },

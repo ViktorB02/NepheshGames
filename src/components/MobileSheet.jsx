@@ -1,3 +1,5 @@
+import { MOBILE_ABOVE_NAVBAR } from '../layout'
+
 // Phone-only bottom-sheet look for the left-side panels. Panels spread
 // `sheetStyle` over their desktop style only when useIsMobile() is true.
 export const sheetStyle = {
@@ -15,14 +17,14 @@ export const sheetPaddedStyle = {
 
 // Phone-only floating card (hotspot info, welcome): inset on all sides, not edge-to-edge. Render <CardKeyframes /> inside the panel.
 export const cardStyle = {
-    top: 'auto', left: 0, right: 0, bottom: 'calc(6px + env(safe-area-inset-bottom))',
-    margin: '0 auto', width: 'calc(100% - 32px)', maxWidth: 360, boxSizing: 'border-box',
-    maxHeight: '34dvh', borderRadius: 16, zIndex: 45,
+    top: 'auto', left: 0, right: 0, bottom: MOBILE_ABOVE_NAVBAR, // sits directly above the bottom nav bar
+    margin: '0 auto', width: 'calc(100% - 48px)', maxWidth: 300, boxSizing: 'border-box',
+    maxHeight: '26dvh', borderRadius: 14, zIndex: 45,
     animation: 'card-in 0.25s ease',
 }
 
 // Same, for panels that scroll their own outer box and carry their own padding.
-export const cardPaddedStyle = { ...cardStyle, overflowY: 'auto', padding: '22px 22px 20px' }
+export const cardPaddedStyle = { ...cardStyle, overflowY: 'auto', padding: '12px 16px 12px' }
 
 export function CardKeyframes() {
     return <style>{`@keyframes card-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }`}</style>

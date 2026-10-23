@@ -1,6 +1,6 @@
 import { useMusic } from './MusicContext'
 
-// Round mute / unmute toggle (white speaker icon on a bordo disc with a gold rim).
+// Round mute / unmute toggle (bordo speaker icon on a cream disc with a gold rim, matching the "?" and Discovered pill).
 // `size` is the diameter in px; pass `floating` for a fixed bottom-right placement, otherwise it is an inline element.
 export default function MusicButton({ size = 34, floating = false }) {
     const { muted, toggle } = useMusic()
@@ -14,8 +14,8 @@ export default function MusicButton({ size = 34, floating = false }) {
             style={{
                 flex: 'none', width: size, height: size, borderRadius: '50%', padding: 0, cursor: 'pointer',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: 'rgba(42,24,24,0.92)', border: '1px solid rgba(201,146,42,0.5)', color: '#fff',
-                boxShadow: '0 2px 10px rgba(0,0,0,0.4)',
+                background: '#e8dcc4', border: '1.5px solid #c9922a', color: '#2a1818',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
                 ...(floating && { position: 'fixed', right: 14, bottom: 'calc(14px + env(safe-area-inset-bottom))', zIndex: 30 }),
             }}
         >

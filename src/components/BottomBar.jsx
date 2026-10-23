@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 
 import useIsMobile from '../hooks/useIsMobile'
+import { MOBILE_ABOVE_NAVBAR } from '../layout'
 
 export default function BottomBar({ onOpenStory, hidden }) {
     const [time, setTime] = useState('')
@@ -32,17 +33,43 @@ export default function BottomBar({ onOpenStory, hidden }) {
 
     return (
         <div style={{
-            position: 'absolute', bottom: 24, right: 60,
-            zIndex: 40, display: 'flex', gap: 12,
+            position: 'absolute', bottom: 24, left: 96, // desktop: bottom-left, clear of the 72px sidebar
+            zIndex: 40, display: 'flex', gap: 12, alignItems: 'center',
             // phone: full-width strip so pills centre and wrap instead of overflowing;
             // the strip ignores touches so the map stays draggable around the pills
             ...(isMobile && {
-                bottom: 'calc(14px + env(safe-area-inset-bottom))', right: 'auto', left: '50%',
+                bottom: MOBILE_ABOVE_NAVBAR, right: 'auto', left: '50%',
                 transform: 'translateX(-50%)', gap: 8,
                 width: 'calc(100vw - 24px)', maxWidth: 'calc(100vw - 24px)',
                 flexWrap: 'wrap', justifyContent: 'center', pointerEvents: 'none',
             }),
         }}>
+            {/* TODO: wire the backpack (inventory) and notebook (journal) buttons to their panels; visual only for now */}
+            {!isMobile && <>
+                {[
+                    ['Backpack', <>
+                        <path d="M9 4.5a3 3 0 0 1 6 0" />
+                        <path d="M6 9a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v9.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 6 18.5V9z" />
+                        <path d="M9 13h6v3.5H9z" />
+                        <path d="M6 11.5H4.5M18 11.5h1.5" />
+                    </>],
+                    ['Notebook', <>
+                        <rect x="6" y="3.5" width="12.5" height="17" rx="1.5" />
+                        <path d="M6 7H4M6 12H4M6 17H4" />
+                        <path d="M10 8h5.5M10 11.5h5.5M10 15h3" />
+                    </>],
+                ].map(([label, shape]) => (
+                    <div key={label} title={label} aria-label={label} style={{
+                        width: 44, height: 44, borderRadius: '50%', flex: 'none',
+                        background: '#e8dcc4', border: '1.5px solid #2a1818',
+                        boxShadow: '0 2px 10px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(201,146,42,0.55)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    }}>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c9922a" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{shape}</svg>
+                    </div>
+                ))}
+            </>}
+
             {/* часовник + температура */}
             <div style={pill}>
                 {/* сонце иконка */}

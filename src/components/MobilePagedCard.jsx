@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { cardStyle, CardKeyframes, PanelClose } from './MobileSheet'
+import { MOBILE_ABOVE_NAVBAR } from '../layout'
 
 // Phone-only floating card that shows ONE page at a time with Back / Next and a "n / total" indicator.
 // Panels render it only when useIsMobile() is true; it mounts when the panel opens, so it always starts on page 1.
@@ -22,7 +23,7 @@ export default function MobilePagedCard({ title, subtitle, pages, onClose }) {
             position: 'absolute', zIndex: 45, display: 'flex', flexDirection: 'column', overflow: 'hidden',
             background: 'rgba(26,14,14,0.95)', border: '1px solid rgba(201,146,42,0.2)',
             color: '#e2ddd0', fontFamily: "'Inter', sans-serif", boxShadow: '0 4px 24px rgba(0,0,0,0.5)',
-            ...cardStyle, bottom: 'calc(40px + env(safe-area-inset-bottom))', maxHeight: '44dvh', maxWidth: 340,
+            ...cardStyle, bottom: MOBILE_ABOVE_NAVBAR, maxHeight: '40dvh', maxWidth: 340,
         }}>
             <CardKeyframes />
 

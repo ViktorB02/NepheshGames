@@ -1,8 +1,8 @@
 import useIsMobile from '../hooks/useIsMobile'
 import { cardStyle, CardKeyframes, PanelClose } from './MobileSheet'
-import { usePanelTop } from '../layout'
+import { usePanelTop, MOBILE_ABOVE_NAVBAR } from '../layout'
 
-export default function WelcomePanel({ onClose }) {
+export default function WelcomePanel({ welcome, onClose }) {
     const isMobile = useIsMobile()
     const panel = usePanelTop()
     const body = {
@@ -18,7 +18,7 @@ export default function WelcomePanel({ onClose }) {
             background: 'rgba(26,14,14,0.95)', border: '1px solid rgba(201,146,42,0.2)',
             color: '#e2ddd0', fontFamily: "'Inter', sans-serif",
             boxShadow: '0 4px 24px rgba(0,0,0,0.5)',
-            ...(isMobile && { ...cardStyle, bottom: 'calc(60px + env(safe-area-inset-bottom))', maxHeight: '28dvh', maxWidth: 320 }), // compact + floated higher; the hotspot card keeps the shared cardStyle
+            ...(isMobile && { ...cardStyle, bottom: MOBILE_ABOVE_NAVBAR, maxHeight: '28dvh', maxWidth: 300 }), // compact bubble directly above the bottom nav bar
         }}>
             {isMobile && <CardKeyframes />}
             <style>{`
@@ -41,7 +41,7 @@ export default function WelcomePanel({ onClose }) {
                     letterSpacing: '0.04em', marginBottom: 6,
                     ...(isMobile && { fontSize: 16, marginBottom: 2 }),
                 }}>
-                    Welcome, Traveller
+                    {welcome.title}
                 </div>
                 <div style={{ fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#c9922a', ...(isMobile && { fontSize: 9 }) }}>
                     Lords of Elzorn
@@ -50,18 +50,13 @@ export default function WelcomePanel({ onClose }) {
             </div>
 
             <div className="welcome-scroll" style={{ overflowY: 'auto', padding: '4px 22px 28px 28px', ...(isMobile && { padding: '2px 16px 12px 18px' }) }}>
-                <div style={body}>
-                    Explore the capital of the Human Kingdom. Discover its landmarks, uncover hidden stories, and experience the world of Elzorn.
-                </div>
-                <div style={body}>
-                    Use the side icons to read the history, learn how the game plays, or join our Discord.
-                </div>
+                {welcome.body.map((p) => <div key={p} style={body}>{p}</div>)}
                 <div style={{
                     marginTop: 8, paddingTop: 16, textAlign: 'center', fontStyle: 'italic',
                     fontSize: 14, color: '#c9922a', borderTop: '1px solid rgba(201,146,42,0.2)',
                     ...(isMobile && { marginTop: 4, paddingTop: 8, fontSize: 12 }),
                 }}>
-                    Your journey begins here.
+                    {welcome.closing}
                 </div>
             </div>
         </div>
