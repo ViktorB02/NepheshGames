@@ -21,7 +21,7 @@ export const MOBILE_NAV_TOP = MOBILE_MENU_TOP + MOBILE_MENU_SIZE + 14
 // anchor to MOBILE_ABOVE_NAVBAR so they sit directly above it and never overlap.
 export const MOBILE_NAVBAR_BOTTOM = 10
 export const MOBILE_NAVBAR_HEIGHT = 46
-export const MOBILE_ABOVE_NAVBAR = `calc(${MOBILE_NAVBAR_BOTTOM + MOBILE_NAVBAR_HEIGHT + 8}px + env(safe-area-inset-bottom))`
+export const MOBILE_ABOVE_NAVBAR = `calc(${MOBILE_NAVBAR_BOTTOM + MOBILE_NAVBAR_HEIGHT + 16}px + env(safe-area-inset-bottom))`
 
 // Phone status widget (top-left, below the menu button).
 export const MOBILE_STATUS_TOP = MOBILE_NAV_TOP

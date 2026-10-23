@@ -157,19 +157,19 @@ export default function ApplyForm() {
 
     return (
         <div style={{
-            minHeight: '100vh', background: '#1a0e0e', color: '#e2ddd0',
+            minHeight: '100vh', background: '#d0c0a0', color: '#2a1818',
             fontFamily: "'Inter', sans-serif",
         }}>
             <style>{`
                 .af-field input, .af-field select, .af-field textarea {
                     width: 100%; padding: 12px 16px; border-radius: 8px;
-                    background: #241515; border: 1px solid rgba(201,146,42,0.2);
-                    color: #e2ddd0; font-size: 15px; font-family: 'Inter', sans-serif;
+                    background: #e8dcc4; border: 1px solid rgba(201,146,42,0.7);
+                    color: #2a1818; font-size: 15px; font-family: 'Inter', sans-serif;
                     outline: none; transition: border-color 0.2s, box-shadow 0.2s;
                 }
-                .af-field input::placeholder, .af-field textarea::placeholder { color: #6f675c; }
+                .af-field input::placeholder, .af-field textarea::placeholder { color: #7a6a5a; }
                 .af-field input:focus, .af-field select:focus, .af-field textarea:focus {
-                    border-color: #e8b84b; box-shadow: 0 0 0 3px rgba(201,146,42,0.18);
+                    border-color: #c9922a; box-shadow: 0 0 0 3px rgba(201,146,42,0.3);
                 }
                 .af-field select { appearance: none; cursor: pointer;
                     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23c9922a' stroke-width='1.6'/%3E%3C/svg%3E");
@@ -177,19 +177,19 @@ export default function ApplyForm() {
                 .af-field textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
                 .af-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
                 .af-check input { accent-color: #c9922a; width: 18px; height: 18px; margin-top: 2px; flex: none; }
-                .af-field.af-invalid input, .af-field.af-invalid select, .af-field.af-invalid textarea { border-color: #c9922a; background: #2a1818; }
+                .af-field.af-invalid input, .af-field.af-invalid select, .af-field.af-invalid textarea { border-color: #8a5a0c; background: #ecdcb8; }
                 .af-error { display: block; margin-top: 8px; padding: 8px 12px; border-left: 2px solid #c9922a;
-                    background: #2a1818; color: #e8b84b; font-size: 13px; line-height: 1.5; text-transform: none; letter-spacing: 0; }
+                    background: rgba(42,24,24,0.08); color: #2a1818; font-size: 13px; line-height: 1.5; text-transform: none; letter-spacing: 0; }
                 .af-hp { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
-                .af-submit:hover { background: rgba(201,146,42,0.3); }
-                .af-submit:focus-visible { outline: 2px solid #e8b84b; outline-offset: 3px; }
+                .af-submit:hover { background: #e8b84b; }
+                .af-submit:focus-visible { outline: 2px solid #8a5a0c; outline-offset: 3px; }
                 @media (max-width: 768px) { .af-row { grid-template-columns: 1fr; } }
             `}</style>
 
             <Link to="/apply" style={{
                 position: 'fixed', top: 24, left: 24, zIndex: 10,
                 display: 'flex', alignItems: 'center', gap: 8,
-                color: '#8a8478', textDecoration: 'none', fontSize: 13,
+                color: '#5a4a3c', textDecoration: 'none', fontSize: 13,
                 letterSpacing: '0.1em', textTransform: 'uppercase',
             }}>
                 ← Back to Positions
@@ -197,7 +197,7 @@ export default function ApplyForm() {
 
             <div style={{ maxWidth: 760, margin: '0 auto', padding: '120px 32px 80px' }}>
                 <div style={{ marginBottom: 40 }}>
-                    <p style={{ fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#c9922a', marginBottom: 12, fontFamily: "'Cinzel', serif" }}>Lords of Elzorn</p>
+                    <p style={{ fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#8a5a0c', marginBottom: 12, fontFamily: "'Cinzel', serif" }}>Lords of Elzorn</p>
                     <h1 style={{ fontFamily: "'Cinzel', serif", fontSize: 'clamp(1.6rem, 4vw, 2.4rem)', fontWeight: 700, letterSpacing: '0.05em' }}>
                         Apply — {title}
                     </h1>
@@ -205,22 +205,22 @@ export default function ApplyForm() {
 
                 {status === 'success' ? (
                     <div role="status" style={{
-                        background: '#2a1818', border: '1px solid #c9922a', borderRadius: 12,
+                        background: 'rgba(42,24,24,0.06)', border: '1px solid #c9922a', borderRadius: 12,
                         padding: 'clamp(24px, 5vw, 40px)', textAlign: 'center',
                     }}>
-                        <h2 style={{ fontFamily: "'Cinzel', serif", fontSize: 22, fontWeight: 700, letterSpacing: '0.05em', color: '#e8b84b', marginBottom: 12 }}>
+                        <h2 style={{ fontFamily: "'Cinzel', serif", fontSize: 22, fontWeight: 700, letterSpacing: '0.05em', color: '#8a5a0c', marginBottom: 12 }}>
                             Application Sent
                         </h2>
-                        <p style={{ fontSize: 15, lineHeight: 1.7, color: '#b5b0a4', marginBottom: 24 }}>
+                        <p style={{ fontSize: 15, lineHeight: 1.7, color: '#3d2c2a', marginBottom: 24 }}>
                             Thank you for applying. We'll review your application and get back to you by email.
                         </p>
-                        <Link to="/apply" style={{ color: '#e8b84b', fontSize: 13, letterSpacing: '0.1em', textTransform: 'uppercase', textDecoration: 'none' }}>
+                        <Link to="/apply" style={{ color: '#8a5a0c', fontSize: 13, letterSpacing: '0.1em', textTransform: 'uppercase', textDecoration: 'none' }}>
                             ← Back to Positions
                         </Link>
                     </div>
                 ) : (
                 <form onSubmit={handleSubmit} onChange={clearError} noValidate style={{
-                    background: '#241515', border: '1px solid rgba(201,146,42,0.2)',
+                    background: 'rgba(42,24,24,0.06)', border: '1px solid rgba(201,146,42,0.6)',
                     borderRadius: 12, padding: 'clamp(24px, 5vw, 40px)',
                     display: 'flex', flexDirection: 'column', gap: 40,
                 }}>
@@ -300,7 +300,7 @@ export default function ApplyForm() {
                         </Field>
                         <label className="af-check" style={{
                             display: 'flex', gap: 12, alignItems: 'flex-start',
-                            fontSize: 14, lineHeight: 1.6, color: '#b5b0a4', cursor: 'pointer',
+                            fontSize: 14, lineHeight: 1.6, color: '#3d2c2a', cursor: 'pointer',
                         }}>
                             <input name="consent" type="checkbox" required />
                             <span>I agree that Nephesh Game Studio stores this information to review my application.</span>
@@ -308,34 +308,34 @@ export default function ApplyForm() {
                         {errors.consent && <span className="af-error" role="alert">{errors.consent}</span>}
                         {Object.keys(errors).length > 0 && (
                             <div role="alert" style={{
-                                padding: '14px 18px', borderRadius: 8, background: '#2a1818',
-                                border: '1px solid #c9922a', color: '#e8b84b', fontSize: 14, lineHeight: 1.6,
+                                padding: '14px 18px', borderRadius: 8, background: 'rgba(42,24,24,0.08)',
+                                border: '1px solid #c9922a', color: '#2a1818', fontSize: 14, lineHeight: 1.6,
                             }}>
                                 Please fix the highlighted fields and try again.
                             </div>
                         )}
                         {status === 'error' && (
                             <div role="alert" style={{
-                                padding: '14px 18px', borderRadius: 8, background: '#2a1818',
-                                border: '1px solid #c9922a', color: '#e8b84b', fontSize: 14, lineHeight: 1.6,
+                                padding: '14px 18px', borderRadius: 8, background: 'rgba(42,24,24,0.08)',
+                                border: '1px solid #c9922a', color: '#2a1818', fontSize: 14, lineHeight: 1.6,
                             }}>
                                 Something went wrong sending your application. Please try again, or email us directly at{' '}
-                                <a href={`mailto:${NEPHESH_EMAIL}`} style={{ color: '#e8b84b' }}>{NEPHESH_EMAIL}</a>.
+                                <a href={`mailto:${NEPHESH_EMAIL}`} style={{ color: '#8a5a0c' }}>{NEPHESH_EMAIL}</a>.
                             </div>
                         )}
                         <div style={{ display: 'flex', alignItems: 'center', gap: 24, flexWrap: 'wrap' }}>
                             <button type="submit" className="af-submit" disabled={status === 'submitting'} style={{
                                 padding: '14px 32px', borderRadius: 100, border: '1px solid #c9922a',
-                                background: 'rgba(201,146,42,0.15)', color: '#e8b84b',
+                                background: '#c9922a', color: '#2a1818',
                                 fontSize: 14, letterSpacing: '0.1em', textTransform: 'uppercase',
                                 fontWeight: 600, cursor: 'pointer', transition: 'background 0.2s',
                                 ...(status === 'submitting' && { opacity: 0.6, cursor: 'wait' }),
                             }}>
                                 {status === 'submitting' ? 'Sending…' : 'Send Application'}
                             </button>
-                            <span style={{ fontSize: 13, color: '#8a8478' }}>
+                            <span style={{ fontSize: 13, color: '#5a4a3c' }}>
                                 Prefer email? Write to{' '}
-                                <a href={`mailto:${NEPHESH_EMAIL}`} style={{ color: '#e8b84b' }}>{NEPHESH_EMAIL}</a>
+                                <a href={`mailto:${NEPHESH_EMAIL}`} style={{ color: '#8a5a0c' }}>{NEPHESH_EMAIL}</a>
                             </span>
                         </div>
                     </Group>
@@ -352,8 +352,8 @@ function Group({ label, children }) {
             <legend style={{
                 width: '100%', paddingBottom: 12, marginBottom: 4,
                 fontFamily: "'Cinzel', serif", fontSize: 12, fontWeight: 600,
-                letterSpacing: '0.3em', textTransform: 'uppercase', color: '#c9922a',
-                borderBottom: '1px solid rgba(201,146,42,0.2)',
+                letterSpacing: '0.3em', textTransform: 'uppercase', color: '#8a5a0c',
+                borderBottom: '1px solid rgba(201,146,42,0.5)',
             }}>
                 {label}
             </legend>
@@ -367,14 +367,14 @@ function Field({ label, required, optional, hint, error, children }) {
         <label className={error ? 'af-field af-invalid' : 'af-field'} style={{ display: 'block' }}>
             <span style={{
                 display: 'block', fontSize: 12, letterSpacing: '0.1em',
-                textTransform: 'uppercase', color: '#8a8478', marginBottom: 8,
+                textTransform: 'uppercase', color: '#5a4a3c', marginBottom: 8,
             }}>
                 {label}
-                {required && <span style={{ color: '#c9922a' }}> *</span>}
+                {required && <span style={{ color: '#8a5a0c' }}> *</span>}
                 {optional && <span style={{ textTransform: 'none', letterSpacing: 0, opacity: 0.7 }}> (optional)</span>}
             </span>
             {children}
-            {hint && <span style={{ display: 'block', fontSize: 12, color: '#6f675c', marginTop: 6 }}>{hint}</span>}
+            {hint && <span style={{ display: 'block', fontSize: 12, color: '#6b5a4a', marginTop: 6 }}>{hint}</span>}
             {error && <span className="af-error" role="alert">{error}</span>}
         </label>
     )

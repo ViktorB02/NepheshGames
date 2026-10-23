@@ -58,7 +58,7 @@ export const MAPS = [
         },
         hotspots: [
             { id: 1, title: 'The Woodcutters', text: "The lifeblood of Aldenmoor's economy. Here lumberjacks fell timber to fuel the kingdom's forges, walls, and war machines.", pos: [159.3, -6.1, 62.6], lift: 19 },
-            { id: 2, title: 'The Timber Yard', text: 'Felled logs are gathered, stripped, and stacked — raw wood ready to be hauled to the Capital for building and crafting.', pos: [153.9, -6.5, 50.7], lift: 26 },
+            { id: 2, title: 'The Timber Yard', text: 'Felled logs are gathered, stripped, and stacked, raw wood ready to be hauled to the Capital for building and crafting.', pos: [153.9, -6.5, 50.7], lift: 26 },
             { id: 3, title: 'The Workhorse', text: "Sturdy draft horses haul the day's timber across Elzorn, keeping the supply lines to the frontlines flowing.", pos: [137.7, -6.5, 47], lift: 26 },
         ],
     },
@@ -84,8 +84,8 @@ export const MAPS = [
             closing: 'Some say a relic sleeps here, one that could turn the tide of war.',
         },
         hotspots: [
-            { id: 1, title: 'The Eternal Temple', text: 'Older than any crown in Elzorn, the Eternal Temple stands beyond the quarrels of kings. Here Humans and Orcs alike lay down their arms — for on this sacred ground, no blade may be drawn. All who seek the favor of the old gods must come as pilgrims, not conquerors.', pos: [149.3, -4.9, 59.0], lift: 14 },
-            { id: 2, title: "The Oracle's Altar", text: "At the heart of the temple burns the Oracle's flame, said to have never died since the First Age. Rulers from every kingdom send envoys to hear its prophecies — for whoever heeds the Oracle's word is said to shape the fate of all Elzorn.", pos: [161.1, -5.5, 71.3], lift: 20 },
+            { id: 1, title: 'The Eternal Temple', text: 'Older than any crown in Elzorn, the Eternal Temple stands beyond the quarrels of kings. Here Humans and Orcs alike lay down their arms, for on this sacred ground, no blade may be drawn. All who seek the favor of the old gods must come as pilgrims, not conquerors.', pos: [149.3, -4.9, 59.0], lift: 14 },
+            { id: 2, title: "The Oracle's Altar", text: "At the heart of the temple burns the Oracle's flame, said to have never died since the First Age. Rulers from every kingdom send envoys to hear its prophecies, for whoever heeds the Oracle's word is said to shape the fate of all Elzorn.", pos: [161.1, -5.5, 71.3], lift: 20 },
         ],
     },
     // РЕГИОН 4+ (кога ќе го имаш): ист формат како горе; offset е optional (default [0, 0, 0]).

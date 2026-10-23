@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react'
 
 import useIsMobile from '../hooks/useIsMobile'
+import DevLogsPanel from './DevLogsPanel'
+import InventoryPanel from './InventoryPanel'
 import { MOBILE_ABOVE_NAVBAR } from '../layout'
 
 export default function BottomBar({ onOpenStory, hidden }) {
     const [time, setTime] = useState('')
+    const [logsOpen, setLogsOpen] = useState(false)
+    const [invOpen, setInvOpen] = useState(false)
     const isMobile = useIsMobile()
 
     useEffect(() => {
@@ -44,7 +48,6 @@ export default function BottomBar({ onOpenStory, hidden }) {
                 flexWrap: 'wrap', justifyContent: 'center', pointerEvents: 'none',
             }),
         }}>
-            {/* TODO: wire the backpack (inventory) and notebook (journal) buttons to their panels; visual only for now */}
             {!isMobile && <>
                 {[
                     ['Backpack', <>
@@ -59,8 +62,9 @@ export default function BottomBar({ onOpenStory, hidden }) {
                         <path d="M10 8h5.5M10 11.5h5.5M10 15h3" />
                     </>],
                 ].map(([label, shape]) => (
-                    <div key={label} title={label} aria-label={label} style={{
+                    <div key={label} title={label} aria-label={label} onClick={() => (label === 'Notebook' ? setLogsOpen : setInvOpen)(true)} style={{
                         width: 44, height: 44, borderRadius: '50%', flex: 'none',
+                        cursor: 'pointer',
                         background: '#e8dcc4', border: '1.5px solid #2a1818',
                         boxShadow: '0 2px 10px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(201,146,42,0.55)',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -94,6 +98,8 @@ export default function BottomBar({ onOpenStory, hidden }) {
                 </div>
                 <span>Informations</span>
             </div>}
+            <InventoryPanel open={invOpen} onClose={() => setInvOpen(false)} />
+            <DevLogsPanel open={logsOpen} onClose={() => setLogsOpen(false)} />
         </div>
     )
 }

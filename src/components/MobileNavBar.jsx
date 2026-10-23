@@ -1,10 +1,15 @@
+import { useState } from 'react'
 import { MAPS } from '../data/hotspots'
+import DevLogsPanel from './DevLogsPanel'
+import InventoryPanel from './InventoryPanel'
 import { MOBILE_NAVBAR_BOTTOM, MOBILE_NAVBAR_HEIGHT } from '../layout'
 
 // Phone-only bottom bar: [backpack] [‹ PREV] [NEXT ›] [notebook].
 // PREV / NEXT cycle through MAPS and wrap around (map 3 -> 1, map 1 -> 3) via the same onSelect as the desktop RegionNav.
 // Rendered by Home only when useIsMobile() is true.
 export default function MobileNavBar({ activeRegion, onSelect }) {
+    const [logsOpen, setLogsOpen] = useState(false)
+    const [invOpen, setInvOpen] = useState(false)
     const idx = Math.max(0, MAPS.findIndex((m) => m.id === activeRegion))
     const go = (step) => onSelect(MAPS[(idx + step + MAPS.length) % MAPS.length].id)
 
@@ -32,8 +37,7 @@ export default function MobileNavBar({ activeRegion, onSelect }) {
         }}>
             <style>{`.mnav-btn:active { background: #e8b84b !important; }`}</style>
 
-            {/* TODO: wire the backpack (inventory) button to its panel; visual only for now */}
-            <button type="button" className="mnav-btn" aria-label="Backpack" style={icon}>
+            <button type="button" className="mnav-btn" aria-label="Backpack" style={icon} onClick={() => setInvOpen(true)}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c9922a" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M9 4.5a3 3 0 0 1 6 0" />
                     <path d="M6 9a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v9.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 6 18.5V9z" />
@@ -49,14 +53,15 @@ export default function MobileNavBar({ activeRegion, onSelect }) {
                 NEXT <span style={chevron}>›</span>
             </button>
 
-            {/* TODO: wire the notebook (journal) button to its panel; visual only for now */}
-            <button type="button" className="mnav-btn" aria-label="Notebook" style={icon}>
+            <button type="button" className="mnav-btn" aria-label="Notebook" style={icon} onClick={() => setLogsOpen(true)}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c9922a" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="6" y="3.5" width="12.5" height="17" rx="1.5" />
                     <path d="M6 7H4M6 12H4M6 17H4" />
                     <path d="M10 8h5.5M10 11.5h5.5M10 15h3" />
                 </svg>
             </button>
+            <InventoryPanel open={invOpen} onClose={() => setInvOpen(false)} />
+            <DevLogsPanel open={logsOpen} onClose={() => setLogsOpen(false)} />
         </div>
     )
 }

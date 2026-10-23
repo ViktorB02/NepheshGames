@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 
 const GOLD = '#c9922a'
-const GOLD_LIGHT = '#e8b84b'
-const CARD_BG = '#241515'
-const CARD_BORDER = '1px solid rgba(201,146,42,0.2)'
+const GOLD_TEXT = '#8a5a0c' // darker gold for small text on the parchment background
+const CARD_BG = 'rgba(42,24,24,0.06)'
+const CARD_BORDER = '1px solid rgba(201,146,42,0.6)'
 
 const SPECS = [
     ['Genre', 'Sandbox MMO RPG, PvP kingdom warfare'],
@@ -50,7 +50,7 @@ const BUILT = [
         items: [
             ['Player movement and animation sync', true],
             ['Server-authoritative combat and shared mobs', false],
-            ['Chat between players — UI done, networking next', false],
+            ['Chat between players, UI done, networking next', false],
         ],
     },
 ]
@@ -58,7 +58,7 @@ const BUILT = [
 const NEXT_UP = [
     'Fully networked world: shared mobs, real chat, trading between players',
     'Territory war between Humans and Orcs',
-    'Art pass across the whole game — which is where you come in',
+    'Art pass across the whole game, which is where you come in',
     'Free-to-play release on Steam',
 ]
 
@@ -80,7 +80,7 @@ const TEAM = [
 export default function About() {
     return (
         <div style={{
-            minHeight: '100vh', background: '#1a0e0e', color: '#e2ddd0',
+            minHeight: '100vh', background: '#d0c0a0', color: '#2a1818',
             fontFamily: "'Inter', sans-serif",
         }}>
             <style>{`
@@ -95,7 +95,7 @@ export default function About() {
             <Link to="/" style={{
                 position: 'fixed', top: 24, left: 24, zIndex: 10,
                 display: 'flex', alignItems: 'center', gap: 8,
-                color: '#8a8478', textDecoration: 'none', fontSize: 13,
+                color: '#5a4a3c', textDecoration: 'none', fontSize: 13,
                 letterSpacing: '0.1em', textTransform: 'uppercase',
             }}>
                 ← Back to World
@@ -111,15 +111,15 @@ export default function About() {
                     <h1 style={{
                         fontFamily: "'Cinzel', serif", fontSize: 'clamp(2rem, 5vw, 3.2rem)',
                         fontWeight: 700, letterSpacing: '0.1em', marginBottom: 12,
-                        background: `linear-gradient(135deg, ${GOLD_LIGHT}, ${GOLD})`,
+                        background: `linear-gradient(135deg, ${GOLD_TEXT}, #a8741a)`,
                         WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
                     }}>
                         Lords of Elzorn
                     </h1>
-                    <p style={{ fontSize: 14, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#7a7468', marginBottom: 40 }}>
+                    <p style={{ fontSize: 14, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#5a4a3c', marginBottom: 40 }}>
                         A Nephesh Game Studio Project
                     </p>
-                    <div style={{ maxWidth: 680, margin: '0 auto', fontSize: 16, lineHeight: 1.9, color: '#b5b0a4', fontWeight: 300 }}>
+                    <div style={{ maxWidth: 680, margin: '0 auto', fontSize: 16, lineHeight: 1.9, color: '#3d2c2a', fontWeight: 300 }}>
                         <p style={{ marginBottom: 16 }}>
                             <strong style={strong}>Nephesh Game Studio</strong> is an independent studio focused on <strong style={strong}>real-time multiplayer experiences</strong> built on a serious technical foundation. We care about worlds that feel alive, not just functional.
                         </p>
@@ -145,10 +145,10 @@ export default function About() {
                                 <div key={k} style={{
                                     display: 'grid', gridTemplateColumns: '90px 1fr', gap: 16,
                                     padding: '14px 20px', fontSize: 14, lineHeight: 1.5,
-                                    borderTop: i === 0 ? 'none' : '1px solid rgba(201,146,42,0.12)',
+                                    borderTop: i === 0 ? 'none' : '1px solid rgba(201,146,42,0.35)',
                                 }}>
-                                    <span style={{ color: GOLD, letterSpacing: '0.1em', textTransform: 'uppercase', fontSize: 12, paddingTop: 2 }}>{k}</span>
-                                    <span style={{ color: '#e2ddd0' }}>{v}</span>
+                                    <span style={{ color: GOLD_TEXT, letterSpacing: '0.1em', textTransform: 'uppercase', fontSize: 12, paddingTop: 2 }}>{k}</span>
+                                    <span style={{ color: '#2a1818' }}>{v}</span>
                                 </div>
                             ))}
                         </div>
@@ -164,12 +164,12 @@ export default function About() {
                                     <div style={{
                                         width: 44, height: 44, borderRadius: '50%',
                                         border: `1.5px solid ${GOLD}`, background: 'rgba(201,146,42,0.12)',
-                                        color: GOLD_LIGHT, fontFamily: "'Cinzel', serif", fontWeight: 700, fontSize: 18,
+                                        color: GOLD_TEXT, fontFamily: "'Cinzel', serif", fontWeight: 700, fontSize: 18,
                                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                                     }}>{i + 1}</div>
-                                    <span style={{ fontSize: 13, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#e2ddd0' }}>{step}</span>
+                                    <span style={{ fontSize: 13, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#2a1818' }}>{step}</span>
                                 </div>
-                                {i < LOOP.length - 1 && <span style={{ color: GOLD, fontSize: 18, marginBottom: 26 }}>→</span>}
+                                {i < LOOP.length - 1 && <span style={{ color: GOLD_TEXT, fontSize: 18, marginBottom: 26 }}>→</span>}
                             </div>
                         ))}
                         <svg title="Repeat" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: 26, marginLeft: 4 }}>
@@ -181,7 +181,7 @@ export default function About() {
 
                 {/* 4. WHAT'S ALREADY BUILT */}
                 <Section label="What's Already Built" title="This is a working game, not a pitch.">
-                    <div style={{ display: 'flex', gap: 24, marginBottom: 24, fontSize: 13, color: '#8a8478' }}>
+                    <div style={{ display: 'flex', gap: 24, marginBottom: 24, fontSize: 13, color: '#5a4a3c' }}>
                         <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}><Dot on /> Playable</span>
                         <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}><Dot /> In progress</span>
                     </div>
@@ -189,12 +189,12 @@ export default function About() {
                         {BUILT.map((group) => (
                             <div key={group.title} style={{ background: CARD_BG, border: CARD_BORDER, borderRadius: 10, padding: 28 }}>
                                 <div style={{
-                                    fontFamily: "'Cinzel', serif", fontSize: 14, fontWeight: 600, color: GOLD,
+                                    fontFamily: "'Cinzel', serif", fontSize: 14, fontWeight: 600, color: GOLD_TEXT,
                                     letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 18,
                                 }}>{group.title}</div>
                                 <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 12 }}>
                                     {group.items.map(([text, playable]) => (
-                                        <li key={text} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', fontSize: 14, lineHeight: 1.5, color: playable ? '#e2ddd0' : '#a39d90' }}>
+                                        <li key={text} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', fontSize: 14, lineHeight: 1.5, color: playable ? '#2a1818' : '#6b5a4a' }}>
                                             <span style={{ paddingTop: 5 }}><Dot on={playable} /></span>
                                             <span>{text}</span>
                                         </li>
@@ -210,10 +210,10 @@ export default function About() {
                     <p style={{ ...bodyText, marginBottom: 24 }}>The plan from here, roughly in this order. No dates, just direction.</p>
                     <ol style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 14 }}>
                         {NEXT_UP.map((text, i) => (
-                            <li key={text} style={{ display: 'flex', gap: 16, alignItems: 'center', fontSize: 15, color: '#e2ddd0' }}>
+                            <li key={text} style={{ display: 'flex', gap: 16, alignItems: 'center', fontSize: 15, color: '#2a1818' }}>
                                 <span style={{
                                     flex: '0 0 32px', height: 32, borderRadius: '50%',
-                                    border: `1px solid ${GOLD}`, color: GOLD_LIGHT,
+                                    border: `1px solid ${GOLD}`, color: GOLD_TEXT,
                                     fontFamily: "'Cinzel', serif", fontWeight: 700, fontSize: 14,
                                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                                 }}>{i + 1}</span>
@@ -228,14 +228,14 @@ export default function About() {
                     <div className="about-grid-2">
                         {TEAM.map((m) => (
                             <div key={m.name} style={{ background: CARD_BG, border: CARD_BORDER, borderRadius: 10, padding: 28 }}>
-                                <div style={{ fontFamily: "'Cinzel', serif", fontSize: 18, fontWeight: 600, color: '#e2ddd0', marginBottom: 6 }}>{m.name}</div>
-                                <div style={{ fontSize: 13, color: GOLD, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 14 }}>{m.role}</div>
-                                <p style={{ fontSize: 14, lineHeight: 1.7, color: '#b5b0a4', fontWeight: 300, marginBottom: 18 }}>{m.bio}</p>
+                                <div style={{ fontFamily: "'Cinzel', serif", fontSize: 18, fontWeight: 600, color: '#2a1818', marginBottom: 6 }}>{m.name}</div>
+                                <div style={{ fontSize: 13, color: GOLD_TEXT, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 14 }}>{m.role}</div>
+                                <p style={{ fontSize: 14, lineHeight: 1.7, color: '#3d2c2a', fontWeight: 300, marginBottom: 18 }}>{m.bio}</p>
                                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
                                     {m.tags.map((t) => (
                                         <span key={t} style={{
                                             fontSize: 12, padding: '4px 12px', borderRadius: 100,
-                                            border: '1px solid rgba(201,146,42,0.35)', color: GOLD_LIGHT,
+                                            border: '1px solid rgba(201,146,42,0.7)', color: GOLD_TEXT,
                                         }}>{t}</span>
                                     ))}
                                 </div>
@@ -245,23 +245,23 @@ export default function About() {
                 </Section>
 
                 {/* footer */}
-                <div style={{ textAlign: 'center', marginTop: 80, color: '#7a7468', fontSize: 13 }}>
-                    Crafting multiplayer worlds — Skopje, North Macedonia
+                <div style={{ textAlign: 'center', marginTop: 80, color: '#5a4a3c', fontSize: 13 }}>
+                    Crafting multiplayer worlds, Skopje, North Macedonia
                 </div>
             </div>
         </div>
     )
 }
 
-const strong = { color: '#e2ddd0', fontWeight: 500 }
-const bodyText = { fontSize: 16, lineHeight: 1.9, color: '#b5b0a4', fontWeight: 300 }
+const strong = { color: '#2a1818', fontWeight: 500 }
+const bodyText = { fontSize: 16, lineHeight: 1.9, color: '#3d2c2a', fontWeight: 300 }
 
 function Dot({ on = false }) {
     return (
         <span style={{
             display: 'inline-block', width: 9, height: 9, borderRadius: '50%',
-            background: on ? '#6fcf6f' : 'rgba(226,221,208,0.18)',
-            boxShadow: on ? '0 0 6px rgba(111,207,111,0.5)' : 'none',
+            background: on ? '#3f8f3f' : 'rgba(42,24,24,0.2)',
+            boxShadow: on ? '0 0 6px rgba(63,143,63,0.45)' : 'none',
         }} />
     )
 }
@@ -269,7 +269,7 @@ function Dot({ on = false }) {
 function Section({ label, title, children }) {
     return (
         <div style={{ marginBottom: 72 }}>
-            <p style={{ fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: GOLD, marginBottom: 12, fontFamily: "'Cinzel', serif" }}>{label}</p>
+            <p style={{ fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: GOLD_TEXT, marginBottom: 12, fontFamily: "'Cinzel', serif" }}>{label}</p>
             <h2 style={{ fontFamily: "'Cinzel', serif", fontSize: 'clamp(1.4rem, 3.5vw, 2rem)', fontWeight: 600, letterSpacing: '0.05em', marginBottom: 20 }}>{title}</h2>
             <div style={{ width: 50, height: 1, background: `linear-gradient(to right, ${GOLD}, transparent)`, marginBottom: 28 }} />
             {children}
